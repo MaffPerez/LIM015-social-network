@@ -77,6 +77,7 @@ export const signUp = () => {
     const signupPassword = sectionElement.querySelector('#signup-password').value;
     const errorEmail = sectionElement.querySelector('.error-email');
     const errorPassword = sectionElement.querySelector('.error-password');
+    const bio = 'Es mi biografía';
 
     errorEmail.innerHTML = '';
     errorPassword.innerHTML = '';
@@ -94,13 +95,12 @@ export const signUp = () => {
             swal('La verificación ha sido enviada.');
             window.location.hash = '#/signin';
             const user = currentUser();
-            console.log(user);
             user.updateProfile({
               displayName: signupUsername,
             }).then(() => {
             }).catch((error) => error);
 
-            postUserCollection(signupUsername, signupEmail)
+            postUserCollection(signupUsername, signupEmail, bio)
               .then(() => {
               })
               .catch((error) => {

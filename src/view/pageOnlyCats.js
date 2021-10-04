@@ -3,9 +3,9 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
-import { signOutUser, onAuthStateChanged } from '../firebase/firebase-auth.js';
+import { signOutUser, onAuthStateChanged, currentUser } from '../firebase/firebase-auth.js';
 import {
-  postCollection, getCollection, deletePost, getPost, editPost, editLike,
+  postCollection, getCollection, deletePost, getPost, editPost, editLike, editBio,
 } from '../firebase/firebase-firestore.js';
 import { uploadPostImage, getPostImageURL } from '../firebase/firebase-storage.js';
 
@@ -241,6 +241,15 @@ export const pageOnlyCats = () => {
     }
   });
   readPosts();
+
+  /* -------------------------------Editar Profile ----------------------- */
+  const editProfile = sectionElement.querySelector('.profile-btn');
+  editProfile.addEventListener('click', (e) => {
+    e.preventDefault();
+    const user = currentUser();
+    user.updateProfile({
+    });
+  });
 
   /* -------------------------------Salir de la página ----------------------- */
   const signOut = sectionElement.querySelector('#sign-out');

@@ -16,13 +16,14 @@ export const getCollection = () => firebase.firestore().collection('posts').orde
 export const getPost = (id) => firebase.firestore().collection('posts').doc(id).get();
 
 // Función que crea la colección de usuarios
-export const postUserCollection = (usuario, email) => firebase.firestore().collection('user').add({
+export const postUserCollection = (usuario, email, bio) => firebase.firestore().collection('user').add({
   usuario,
   email,
+  bio,
 });
 
 // Función que trae la collección de usuarios
-export const getUserCollection = () => firebase.firestore().collection('user');
+export const getUserCollection = (id) => firebase.firestore().collection('user').doc(id).get();
 
 // Función para eliminar posts
 export const deletePost = (id) => firebase.firestore().collection('posts').doc(id).delete();
@@ -32,3 +33,6 @@ export const editPost = (id, text) => firebase.firestore().collection('posts').d
 
 // Función para agregar y quitar likes
 export const editLike = (id, likes) => firebase.firestore().collection('posts').doc(id).update({ likes });
+
+// Función para editar biografía
+export const editBio = (id, bio) => firebase.firestore().collection('user').doc(id).update({ bio });
